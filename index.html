@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Improving your Drupal 8 development workflow</title>
+
+    <meta name="description" content="Improving your Drupal 8 development workflow">
+    <meta name="author" content="Jesus Manuel Olivas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+    maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <link rel="stylesheet" href="lib/css/tomorrow-night-bright.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <!-- Any section element inside of this container displayed as slide -->
+      <div class="slides">
+        <section data-background="#5BC3FF">
+          <br/>
+          <h1 class="big white">Improving your Drupal 8 development workflow</h1>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>About me</h2>
+          <hr>
+          <div class="half">
+            <img src="assets/images/jmolivas.jpg" >
+            <br/>
+            <div>
+              <h3 class="name">Jesus Manuel Olivas</h3>
+              <h3 class="name">Drupal 8 Solutions Engineer</h3>
+            </div>
+            <div  class="text-small">
+              <p>
+              <a target="_blank"  href="http://twitter.com/jmolivas" target="_blank">@jmolivas</a> |
+              <a target="_blank"  href="http://twitter.com/drupalconsole" target="_blank">@drupalconsole</a>
+              </p>
+              <a target="_blank"  href="http://twitter.com/drupodcast" target="_blank">@drupodcast</a>
+            </div>
+          </div>
+          <div class="half">
+            <p>
+              <br/><br/><br/>
+              <img src="assets/images/ffw-logo.png"  class="no-border">
+              <br/><br/><br/><br/><br/>
+            </p>
+            <div>
+              <h3 class="name">I work for FFW</h3>
+              <h3 class="name"><i>(and you should too)</i></h3>
+            </div>
+          </div>
+          <aside class="notes">
+            <p>My names is ....</p>
+            <p>I work for FFW (Formely knonw as Blink reaction and Propeople)</p>
+          </aside>
+        </section>
+
+        <section data-background="#5BC3FF">
+          <h1 class="white big">Tools</h1>
+            <div class="topic">
+              <div class="left">
+                <img src="assets/images/logo-composer-transparent.png" class="no-border">
+              </div>
+              <div class="left">
+                <img src="assets/images/git-logo.png" class="no-border">
+              </div>
+              <div class="left">
+                <img src="assets/images/drupal-console-square.png" class="no-border">
+              </div>
+              <div class="left">
+                <img src="assets/images/logo-drupal-composer.png" class="no-border">
+              </div>
+            </div>
+        </section>
+
+        <section data-background="#5BC3FF">
+          <h1 class="big white">Composer</h1>
+          <hr class="white" />
+          <div>
+            <div class="half">
+              <p>
+                <ul class="bullets white big">
+                  <li>Dependencies</li>
+                  <li>Scripts</li>
+                  <li>Deploy</li>
+                </ul>
+              </p>
+            </div>
+            <div class="half">
+              <p>
+                <img src="assets/images/logo-composer-transparent.png" class="no-border">
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section data-background="#002A35">
+<pre><code class="bash white text-big">
+composer init
+
+composer search drupal
+
+composer create-project drupal/drupal
+
+composer require 'drupal/console':'~1.0'
+
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+          <h2 class="big white">composer create-project drupal/drupal</h2>
+          <p>
+            <img src="assets/images/composer-create-project-drupal-drupal.png" class="no-border">
+          </p>
+        </section>
+
+        <section data-background="#002A35">
+          <h2 class="big white">composer require 'drupal/console':'~1.0'</h2>
+          <p>
+            <img src="assets/images/composer-drupal-require-drupal-console.png" class="no-border">
+          </p>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Project workflow 1/2</h2>
+<pre><code class="bash white text-big">git init
+
+cp example.gitignore .gitignore
+
+git add -p
+
+git commit -m
+
+git push</code></pre>
+        </section>
+
+
+        <section data-background="#002A35">
+        <h2 class="big white">Project workflow 2/2</h2>
+<pre><code class="bash white text-big">git clone
+
+composer install
+
+composer show
+
+composer outdated
+
+composer update</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">.gitignore</h2>
+<pre><code class="bash white text-big"># Core's dependencies
+vendor
+
+# Configuration files
+sites/*/settings*.php
+sites/*/services*.yml
+
+# User-generated content
+sites/*/files
+sites/*/private</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Download modules and themes</h2>
+<pre><code class="bash white text-big">
+drupal module:download pathauto
+
+drupal module:update pathauto
+
+drupal update:execute all
+</code></pre>
+        </section>
+
+        <section data-background="assets/images/half-way.jpg">
+        </section>
+
+        <section data-background="#5BC3FF">
+          <h1 class="big white">Drupal Composer</h1>
+          <hr class="white" />
+          <div>
+            <div class="half">
+                <ul class="bullets big white">
+                  <li>Drupal&nbsp;Core</li>
+                  <li>Drupal&nbsp;Console</li>
+                  <li>Scripts</li>
+                  <li>Deploy</li>
+                </ul>
+            </div>
+            <div class="half">
+              <p>
+                <br/>
+                <img src="assets/images/logo-drupal-composer.png" class="no-border">
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section data-background="#002A35">
+        <h1 class="white big">Start new project</h1>
+<pre><code class="bash white text-big">
+# Using Composer
+composer create-project \
+drupal-composer/drupal-project:8.x-dev \
+d8.dev --no-interaction
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h1 class="white big">Start new project</h1>
+<pre><code class="bash white text-big">
+# Using Drupal Console
+drupal site:new d8.dev --composer
+</code></pre>
+        </section>
+
+        <section data-background="assets/images/drupal-site-new-composer-1.png">
+        </section>
+
+        <section data-background="assets/images/drupal-site-new-composer-2.png">
+        </section>
+
+        <section data-background="#5BC3FF">
+          <h1 class="white big">Questions & || Feedback</h1>
+          <hr class="white" />
+          <p>
+            <br/>
+            <h1 class="big white">Ask now or later using:</h1>
+            <br/>
+            <h1 class="big white">@jmolivas</h1>
+            <p>
+              <br/>
+            </p>
+          </p>
+        </section>
+      </div>
+    </div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+  <script type="text/javascript" src="lib/js/jquery.min.js"></script>
+
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'slide', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/leap/leap.js', async: true }
+          // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+  </body>
+</html>

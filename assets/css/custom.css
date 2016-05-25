@@ -1,0 +1,331 @@
+* {
+  font-weight: bold;
+}
+
+::selection {
+  background: #0076C2; /* WebKit/Blink Browsers */
+  color: #fff;
+}
+
+::-moz-selection {
+  background: #0076C2; /* Gecko Browsers */
+  color: #fff;
+}
+
+.reveal h2 {
+  font-size: 1.5em;
+}
+
+div.half {
+  display:block;
+  float: left;
+  width:45%;
+  padding-left:2%;
+  padding-left:3%;
+}
+
+.break {
+  clear: both;
+  float: none;
+}
+
+.reveal p {
+  padding: 5px;
+}
+
+.reveal pre code {
+  text-align: left;
+  font-size: .65em;
+  line-height: 115%;
+  font-family: monospace,sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 90%;
+}
+
+div.text-left, ul.text-left, li.text-left, p.text-left {
+  text-align: left;
+}
+
+div.text-medium, code.text-medium, ul.text-medium, pre code.text-medium, p.text-medium {
+  font-size: 85%;
+  line-height: 100%;
+}
+
+div.text-small, code.text-small, ul.text-small, pre code.text-small, p.text-small {
+  font-size: 80%;
+}
+span.text-small {
+    font-size: 60%;
+}
+
+div.text-big, code.text-big, ul.text-big, pre code.text-big {
+  font-size: 120%;
+}
+
+div.text-bigger, code.text-bigger, ul.text-bigger, pre code.text-bigger {
+  font-size: 160%;
+  line-height: 100%;
+}
+
+.reveal h1 {
+  text-shadow: none;
+}
+
+h1.big {
+  text-transform: none;
+  font-size: 2.5em;
+  line-height: 125%;
+}
+
+
+h1.medium {
+  text-transform: none;
+  font-size: 2em;
+}
+
+h1.small {
+  text-transform: none;
+  font-size: 1.5em;
+}
+
+.reveal h1, .reveal h2 {
+  margin-bottom: 40px;
+}
+
+h2.big {
+  text-transform: none;
+  line-height: 125%;
+}
+
+h2.medium {
+  text-transform: none;
+  font-size: 1.75em;
+}
+
+.reveal section img.no-border {
+  border: 0px;
+  box-shadow:none;
+  margin: 0;
+  padding: 0;
+}
+
+.reveal blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 0.5em 5px;
+  padding: 0.5em 5px;
+  font-style: italic;
+  font-family: Georgia, serif;
+  line-height: 125%;
+}
+
+.reveal blockquote p {
+  display: inline;
+}
+
+footer {
+  position: absolute;
+    width: 100%;
+  bottom: .5em;
+  left: 3em;
+
+  margin: 0 0 0 0;
+  color: black;
+  font-family: "News Cycle", Impact, sans-serif;
+  line-height: 0.9em;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-shadow: none;
+  font-size: 1.5em;
+}
+
+footer .stuck {
+    float: left;
+    margin-left: 20px;
+    line-height: 12px;
+}
+
+ul.bullets {
+  margin: 25px;
+}
+
+ul.bullets.medium {
+  margin: 15px;
+}
+
+ul li {
+  margin-bottom: 50px;
+}
+
+/*ul li {
+  list-style-type: none;
+}
+*/
+
+ul.bullets li {
+  line-height: 100%;
+  padding-bottom: .75em;
+  font-size: 1.75em;
+  text-align: left;
+  margin-left: 50px;
+}
+
+ul.bullets.medium li {
+  line-height: 100%;
+  padding-bottom: .75em;
+  font-size: 1.15em;
+  text-align: left;
+}
+
+.reveal h5 {
+  font-size: .90em;
+}
+
+.reveal pre code span.line-number {
+  width: 20px;
+  color: #EEE;
+  display:inline-block;
+}
+
+.reveal ul li h4, .reveal ul li h5, .reveal ul li h6 {
+  margin-bottom: 5px
+}
+
+div.align-left {
+  float: left;
+}
+
+div.align-right {
+  float: right;
+  margin-right: 150px;
+}
+
+.reveal h3.name {
+  padding-top: 10`px;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+img.avatar {
+  width: 320px;
+  height: 320px;
+}
+
+.reveal h3.title {
+  font-size: 140%;
+  line-height: 125%;
+}
+.reveal div.contributors {
+  width: 960px;
+  margin: auto;
+}
+
+.reveal div.contributors .contributor {
+
+  float: left;
+  padding: 2px;
+  /*padding-bottom: 5px;*/
+}
+
+.reveal div.contributors .contributor img {
+  max-width: 80px;
+  max-height: 80px;
+  border: 1px solid;
+  margin: 0px;
+  padding: 0px;
+}
+
+.reveal div.contributors .contributor .username {
+  font-size: 32%;
+  line-height: 1em;
+  /*margin-bottom: 15px;*/
+}
+
+#notes {
+  width: auto;
+}
+
+.reveal .how-maintain {
+  margin-bottom: 20px;
+}
+
+.reveal .how-maintain img {
+  width: 45%;
+  height: 45%;
+}
+.reveal .how-maintain p {
+  font-size: 75%;
+}
+.reveal .white, .reveal a.white, hr.white  {
+  color: #FFF;
+}
+
+.reveal .white-back, .reveal a.white-back  {
+  background-color: #FFF;
+}
+
+.reveal table, .reveal table td, .reveal table  {
+  border: 2px;
+  border-color: #000;
+  padding: 5px;
+  margin: 5px;
+}
+.reveal .underlined {
+  background: url(../images/underline.gif) repeat-x 100% 100%;
+}
+.reveal h3.note {
+  font-size: 125%;
+  line-height: 125%;
+  background-color: #0076C2;
+  padding: 25px;
+  color: #FFFFFF;
+}
+
+#contributors-list li {
+  list-style-type: none;
+  display: inline-block;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  width: 50px;
+  overflow: hidden;
+}
+#contributors-list li img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0px none;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+hr.white {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 255), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 255));
+}
+
+.topic .left {
+  display: block;
+  float: left;
+  padding: 2px;
+}
+
+.topic img {
+  width: auto;
+  height: 240px;
+}
+
+/*
+.reveal .slide-background .present {
+  width:95%;
+  height:95%;
+  margin:2%;
+  margin-bottom: 5%;
+}*/
