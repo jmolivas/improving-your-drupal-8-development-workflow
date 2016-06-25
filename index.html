@@ -33,7 +33,7 @@
     <div class="reveal">
       <!-- Any section element inside of this container displayed as slide -->
       <div class="slides">
-        <section data-background="#5BC3FF">
+        <section data-background="#1edcd9">
           <br/>
           <h1 class="big white">Improving your Drupal 8 development workflow</h1>
           <aside class="notes">
@@ -75,7 +75,7 @@
           </aside>
         </section>
 
-        <section data-background="#5BC3FF">
+        <section data-background="#1edcd9">
           <h1 class="white big">Tools</h1>
             <div class="topic">
               <div class="left">
@@ -93,79 +93,104 @@
             </div>
         </section>
 
-        <section data-background="#5BC3FF">
-          <h1 class="big white">Composer</h1>
-          <hr class="white" />
+        <section data-background="#002A35">
+          <h2 class="white">Getting Drupal before 8.1.x</h2>
+          <br/>
+          <h3 class="white text-bigger">
+              Downloading tar.gz/zip from d.o.
+          </h3>
+
+          <p>
+<pre><code class="bash white text-big">
+drush dl drupal
+
+drupal site:new drupal8.dev --latest
+
+</code></pre>
+          </p>
+        </section>
+
+        <section data-background="#002A35">
+          <h2 class="big white">What is <strike>wrong</strike> not good about that?</h2>
           <div>
-            <div class="half">
-              <p>
-                <ul class="bullets white big">
-                  <li>Dependencies</li>
-                  <li>Scripts</li>
-                  <li>Deploy</li>
-                </ul>
-              </p>
-            </div>
-            <div class="half">
-              <p>
-                <img src="assets/images/logo-composer-transparent.png" class="no-border">
-              </p>
-            </div>
+            <img src="assets/images/drupal-download-tree.png" class="no-border">
           </div>
         </section>
 
+
         <section data-background="#002A35">
+          <div>
+            <img src="assets/images/drupal-vendor-tree.png" class="no-border">
+          </div>
+        </section>
+
+          <section data-background="#002A35">
+          <h2 class="white">.example.gitignore</h2>
+<pre><code class="bash white text-big"># Core and vendor not ignored :(
+# core
+# vendor
+
+# Configuration files
+sites/*/settings*.php
+sites/*/services*.yml
+
+# User-generated content
+sites/*/files
+sites/*/private</code></pre>
+          </p>
+        </section>
+
+        <section data-background="#1edcd9">
+          <h1 class="big white">Composer</h1>
+          <div>
+            <img src="assets/images/logo-composer-transparent.png" class="no-border">
+          </div>
+          <br/>
+          <p class="white">
+            Dependency Manager for PHP &nbsp&nbsp|&nbsp&nbsp 
+            <a class="white" href="http://getcomposer.org/">http://getcomposer.org/</a></p>
+        </section>
+
+        <section>
+          <img src="assets/images/composer-lifecycle.png" class="no-border">
+          <a href="http://www.slideshare.net/rdohms/composer-the-right-way-phpbnl16">Composer the Right Way &nbsp&nbsp=>&nbsp&nbsp Rafael Dohms</a>
+        </section>
+
+        <section data-background="#c4584e">
+          <h1 class="white big">Always commit your <br/> composer.lock </h2>
+        </section>
+
+        <section data-background="#002A35">
+          <h1 class="big white">Start new project</h1>
 <pre><code class="bash white text-big">
-composer init
+composer create-project drupal/drupal \
+--prefer-dist --no-interaction
 
-composer search drupal
+# This is the equivalent of:
 
-composer create-project drupal/drupal
+git clone  
 
-composer require 'drupal/console':'~1.0'
-
+composer install
 </code></pre>
         </section>
 
-        <section data-background="#002A35">
-          <h2 class="big white">composer create-project drupal/drupal</h2>
-          <p>
+<!--
+           <p>
             <img src="assets/images/composer-create-project-drupal-drupal.png" class="no-border">
           </p>
-        </section>
-
-        <section data-background="#002A35">
-          <h2 class="big white">composer require 'drupal/console':'~1.0'</h2>
           <p>
             <img src="assets/images/composer-drupal-require-drupal-console.png" class="no-border">
-          </p>
-        </section>
+          </p> 
+-->
 
         <section data-background="#002A35">
-        <h2 class="big white">Project workflow 1/2</h2>
-<pre><code class="bash white text-big">git init
+        <h2 class="big white">Create the Git repository</h2>
+<pre><code class="bash white text-big">
+git init
 
 cp example.gitignore .gitignore
 
-git add -p
-
-git commit -m
-
-git push</code></pre>
-        </section>
-
-
-        <section data-background="#002A35">
-        <h2 class="big white">Project workflow 2/2</h2>
-<pre><code class="bash white text-big">git clone
-
-composer install
-
-composer show
-
-composer outdated
-
-composer update</code></pre>
+</code></pre>
         </section>
 
         <section data-background="#002A35">
@@ -183,65 +208,531 @@ sites/*/private</code></pre>
         </section>
 
         <section data-background="#002A35">
-        <h2 class="big white">Download modules and themes</h2>
+          <h1 class="big white">Add a new dependency</h1>
 <pre><code class="bash white text-big">
-drupal module:download pathauto
-
-drupal module:update pathauto
-
-drupal update:execute all
+composer require drupal/console:~1.0 \
+--prefer-dist \
+--optimize-autoloader \
+--sort-packages
 </code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Install Drupal</h2>
+<pre><code class="bash white text-medium">
+drupal site:install standard --langcode="en" \
+--db-type="mysql" --db-host="127.0.0.1" \
+--db-name="drupal" --db-user="root" \
+--db-pass="root" --db-port="3306" \
+--site-name="Drupal 8 Site Install" \
+--site-mail="admin@example.com" \
+--account-name="admin" \
+--account-mail="admin@example.com" \
+--account-pass="admin" \
+--no-interaction
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Commit changes</h2>
+<pre><code class="bash white text-big">git add -p
+
+git commit -m
+
+git push
+
+# Create and send PR + merge changes 
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Obtain a local copy</h2>
+<pre><code class="bash white text-big">
+git clone
+
+composer install \
+--prefer-dist --optimize-autoloader
+
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">sites/default/settings.php</h2>
+<pre><code class="bash white text-normal">
+# Generated value
+$config_directories['sync'] = 'sites/default/files/config_HASH/sync';
+
+
+# Update with new value 
+$config_directories['sync'] = 'config/HASH/sync';
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Download modules</h2>
+<pre><code class="bash white text-big">drupal module:download admin_toolbar
+
+drupal module:install admin_toolbar
+
+drupal config:export
+
+git add | commit | push | merge
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Sync project</h2>
+<pre><code class="bash white text-big">
+git fetch upstream
+
+git merge
+
+drupal config:import
+
+drupal cache:rebuild all
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+          <h1 class="big white">What we have so far?</h1>
+          <ul class="bullets white">
+            <li>Composer manage the site.</li>
+            <li>Vendor directory is ignored.</li>
+            <li>Use git for code + config.</li>
+          </ul>
+        </section>
+
+        <section data-background="#002A35">
+          <h1 class="big white">What are we missing?</h1>
+          <ul class="bullets white">
+              <li>Modules are commited.</li>
+              <li>Config directory not outside of project root.</li>
+            </ul>
         </section>
 
         <section data-background="assets/images/half-way.jpg">
         </section>
 
-        <section data-background="#5BC3FF">
+        <section data-background="#1edcd9">
           <h1 class="big white">Drupal Composer</h1>
-          <hr class="white" />
           <div>
-            <div class="half">
-                <ul class="bullets big white">
-                  <li>Drupal&nbsp;Core</li>
-                  <li>Drupal&nbsp;Console</li>
-                  <li>Scripts</li>
-                  <li>Deploy</li>
-                </ul>
-            </div>
-            <div class="half">
-              <p>
-                <br/>
-                <img src="assets/images/logo-drupal-composer.png" class="no-border">
+            <p>
+              <img src="assets/images/logo-drupal-composer.png" class="no-border">
+            </p>
+            <p class="white">
+              Template for Drupal &nbsp&nbsp|&nbsp&nbsp
+              <a class="white" href="https://github.com/drupal-composer/drupal-project">drupal-composer/drupal-project</a>
               </p>
-            </div>
           </div>
         </section>
 
         <section data-background="#002A35">
         <h1 class="white big">Start new project</h1>
-<pre><code class="bash white text-big">
-# Using Composer
+<pre><code class="bash white text-big"># Using Composer
 composer create-project \
 drupal-composer/drupal-project:8.x-dev \
-d8.dev --no-interaction
+drupal8.dev --prefer-dist \
+--no-interaction
+
+
+# Create the Git repository
+git init
 </code></pre>
         </section>
 
         <section data-background="#002A35">
-        <h1 class="white big">Start new project</h1>
-<pre><code class="bash white text-big">
-# Using Drupal Console
-drupal site:new d8.dev --composer
+        <h2 class="white">Project root and web directory</h2>
+        <div>
+          <div class="half">
+<pre><code class="bash white text-medium">
+drupal8.dev/
+├── LICENSE
+├── README.md
+├── composer.json
+├── composer.lock
+├── drush
+├── phpunit.xml.dist
+├── scripts
+├── vendor
+└── web
+</code></pre>
+          </div>
+          <div class="half">
+<pre><code class="bash white text-medium">
+web/
+├── autoload.php
+├── core
+├── index.php
+├── modules
+├── profiles
+├── robots.txt
+├── sites
+├── themes
+├── update.php
+└── web.config
+</code></pre>
+          </div>
+        </div>
+        </section>
+
+          <section data-background="#002A35">
+          <h2 class="white">.gitignore</h2>
+<pre><code class="bash white text-medium"># 3rd party dependencies
+vendor
+
+# drupal core files
+web/core
+
+# Drupal project files
+web/modules/contrib
+web/themes/contrib
+web/profiles/contrib
+
+# Ignore Drupal sites file directory
+web/sites/*/files</code></pre>
+          </p>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Install Drupal</h2>
+<pre><code class="bash white text-medium">
+drupal site:install standard --langcode="en" \
+--db-type="mysql" --db-host="127.0.0.1" \
+--db-name="drupal" --db-user="root" \
+--db-pass="root" --db-port="3306" \
+--site-name="Drupal 8 Site Install" \
+--site-mail="admin@example.com" \
+--account-name="admin" \
+--account-mail="admin@example.com" \
+--account-pass="admin" \
+--no-interaction
 </code></pre>
         </section>
 
-        <section data-background="assets/images/drupal-site-new-composer-1.png">
+        <section data-background="#002A35">
+        <h2 class="big white">Commit changes</h2>
+<pre><code class="bash white text-big">git add -p
+
+git commit -m
+
+git push
+
+# Create and send PR + merge changes 
+</code></pre>
         </section>
 
-        <section data-background="assets/images/drupal-site-new-composer-2.png">
+        <section data-background="#002A35">
+        <h2 class="big white">Obtain a local copy</h2>
+<pre><code class="bash white text-big">
+git clone
+
+composer install \
+--prefer-dist --optimize-autoloader
+
+</code></pre>
         </section>
 
-        <section data-background="#5BC3FF">
+        <section data-background="#002A35">
+        <h2 class="big white">web/sites/default/settings.php</h2>
+<pre><code class="bash white text-normal">
+# Generated value
+$config_directories['sync'] = 'sites/default/files/config_HASH/sync';
+
+
+# Update with new value 
+$config_directories['sync'] = '../config/sync';
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Download modules</h2>
+<pre><code class="bash white text-big">composer require drupal/admin_toolbar
+
+drupal module:install admin_toolbar
+
+drupal config:export
+
+git add | commit | push | merge
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Sync project</h2>
+<pre><code class="bash white text-big">
+git fetch upstream
+
+git merge
+
+composer install
+
+drupal config:import
+
+drupal cache:rebuild all
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Update modules</h2>
+<pre><code class="bash white text-big">composer update drupal/admin_toolbar
+
+drupal update:execute admin_toolbar
+
+git add | commit | push | merge
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">Sync project</h2>
+<pre><code class="bash white text-big">
+git fetch upstream
+
+git merge
+
+composer install
+
+drupal update:execute admin_toolbar
+
+drupal update:execute all
+</code></pre>
+        </section>
+
+        <section data-background="#1edcd9">
+          <h1 class="big white">How composer knows about the modules?</h1>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">admin_toolbar/composer.json</h2>
+<pre><code class="json white text-medium">
+{
+  "name": "drupal/admin_toolbar",
+  "description": "...",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  ...
+}
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">drupal8.dev/composer.json</h2>
+<pre><code class="json white text-medium">
+"repositories": [
+  {
+    "type": "composer",
+    "url": "https://packagist.drupal-composer.org"
+  }
+],
+
+# https://packages.drupal.org/8 still in Alpha :(
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">drupal8.dev/composer.json</h2>
+<pre><code class="json white text-medium">
+"extra": {
+  "installer-paths": {
+    "web/core": ["type:drupal-core"],
+    "web/modules/contrib/{$name}": ["type:drupal-module"],
+    "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+    "web/themes/contrib/{$name}": ["type:drupal-theme"]
+  }
+}
+</code></pre>
+        </section>
+        <section data-background="#1edcd9">
+          <h1 class="big white">How can I use a module outside of d.o.?</h1>  
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">drupal8.dev/composer.json</h2>
+<pre><code class="json white text-medium">{
+  "type": "package",
+  "package": {
+    "name": "drupal/gist_embed",
+    "version": "dev-master",
+    "type": "drupal-module",
+    "source": {
+      "url": "https://github.com/jmolivas/gist_embed.git",
+      "type": "git",
+      "reference": "8.1.x"
+    }
+  }
+},
+
+# composer require drupal/gist_embed</code></pre>
+        </section>
+
+        <section data-background="#1edcd9">
+          <h1 class="big white">How can I apply patches to modules?</h1>  
+        </section>        
+
+        <section data-background="#002A35">
+        <h2 class="big white">drupal8.dev/composer.json</h2>
+<pre><code class="json white text-medium">
+  "extra": {
+    "patches": {
+      "drupal/admin_toolbar": {
+        "Patch description": "URL to patch"
+      }
+    }
+  }
+</code></pre>
+        </section>
+
+        <section data-background="#1edcd9">
+          <h1 class="big white">How can I automate some tasks?</h1>  
+        </section>        
+
+        <section data-background="#002A35">
+        <h2 class="big white">drupal8.dev/composer.json</h2>
+<pre><code class="json white text-medium">
+"scripts": {
+  "post-install-cmd": [
+    "sh ./console/post-install.sh"
+  ],
+  "pre-update-cmd": [
+    "drupal chain --file=../console/pre-update.yml"
+  ],
+  "post-update-cmd": [
+    "drupal chain --file=../console/post-update.yml"
+  ]
+},
+</code></pre>
+        </section>
+
+<!--     "drupal chain --file=../console/post-update.yml" -->
+
+        <section data-background="#002A35">
+        <h2 class="big white">post-install.yml</h2>
+<pre><code class="bash white text-medium">#!/bin/sh
+
+if [ ! -f web/sites/default/settings.php ]
+  then
+    drupal chain --file=../console/post-install.yml
+fi
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">post-install.yml</h2>
+<pre><code class="yml white text-medium">commands:
+  - command: site:install
+    options:
+      langcode: en
+      db-type: '${{DATABASE_TYPE}}'
+      db-host: '${{DATABASE_HOST}}'
+      db-name: '${{DATABASE_NAME}}'
+      db-user: '${{DATABASE_USER}}'
+      db-pass: '${{DATABASE_PASSWORD}}'
+      db-port: '${{DATABASE_PORT}}'
+      ...
+  - command: create:users
+  - command: create:vocabularies
+  - command: create:terms
+  - command: create:nodes
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">pre-update.yml</h2>
+<pre><code class="yml white text-medium">commands:
+  - command: database:dump
+  - command: exec
+    arguments:
+      bin: 'composer archive --dir=/tmp/'
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+        <h2 class="big white">post-update.yml</h2>
+<pre><code class="yml white text-medium">commands:
+  - command: config:import
+  - command: update:execute
+    arguments:
+      module: all
+</code></pre>
+        </section>
+
+        <section data-background="#1edcd9">
+          <h1 class="white big">Should I use composer <br/> install or update?</h2>
+        </section>
+
+<!--         <section data-background="#c4584e">
+          <h1 class="white big">Always commit your <br/> composer.lock </h2>
+        </section> -->
+
+        <section>
+            <p>
+              <img src="assets/images/composer-update-install.png" class="no-border">
+            </p>
+        </section>
+
+        <section data-background="#002A35">
+          <h2 class="white big">Check out a new project and want to start coding?</h2>
+<pre><code class="bash white text-bigger">
+composer install
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+          <h2 class="white big">Make sure you have installed the last updates from other developers?</h2>
+<pre><code class="bash white text-bigger">
+composer install
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+          <h2 class="white big"> Deploying a new release of your application to production?</h2>
+<pre><code class="bash white text-bigger">
+composer install
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+          <h2 class="white big">Grab new versions for the dependencies of your project?</h2>
+<pre><code class="bash white text-bigger">
+composer update
+</code></pre>
+        </section>
+
+        <section data-background="#002A35">
+          <h2 class="white big">Composer & Deployments</h2>
+<pre><code class="bash white text-big">
+composer install \
+--no-progress
+--prefer-dist \
+--no-dev \
+--optimize-autoloader
+</code></pre>
+        </section>
+
+        <section data-background="#1edcd9">
+        <ul class="bullets white">
+          <li>install: Download same versions defined on composer.lock file.</li>  
+          <li>--no-progress: Don't output progress.</li>
+          <li>--prefer-dist: Download distribution packages, use local cache.</li>
+          <li>--no-dev: Avoids download development libraries.</li>
+          <li>--optimize-autoloader: Generate classmap for PSR-0/4 autoloaders.</li>
+        </ul>
+        </section>
+
+        <section data-background="#002A35">
+          <h1 class="big white">What we have?</h1>
+          <ul class="bullets white">
+            <li>Composer manage the site.</li>
+            <li>Vendor directory is ignored.</li>
+            <li>Use git for code + config.</li>
+            <li>Modules are managed via composer.</li>
+            <li>Config directory outside of project root.</li>
+          </ul>
+        </section>
+
+        <section data-background="#c4584e">
+          <h1 class="white big">Always commit your <br/> composer.lock </h2>
+        </section>
+
+        <section data-background="#1edcd9">
           <h1 class="white big">Questions & || Feedback</h1>
           <hr class="white" />
           <p>

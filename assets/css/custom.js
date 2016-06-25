@@ -450,5 +450,9 @@ export default StyleSheet.create({
     "topic img": {
         "width": "auto",
         "height": 240
+    },
+    "reveal section img": {
+        "backgroundColor": "inherit",
+        "background": "inherit"
     }
 });
